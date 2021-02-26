@@ -1,0 +1,197 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.imgsizing__part2 {
+    width: 80%;
+    height: 300px;
+}
+
+.leftbar {
+    width: 50vw;
+    height: 500px;
+}
+
+.part1 > div > img {
+    height: 500px;
+    width: 100%;
+}
+
+
+.rightbar {
+    padding-top: 10px;
+   
+}
+
+.rightbar > div > p:nth-child(3) {
+    font-weight: 700;
+}
+
+
+.rightbar > div > button:nth-of-type(1) {
+    margin-bottom: 20px;
+}
+
+
+button {
+    background-color: #00cc99;
+    color: white;
+    border: none;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 0;
+    font-size: 15px;
+}
+
+button:active {
+    outline: 0;
+}
+
+.part1{
+    display: flex;
+    margin-top: 80px;
+}
+
+.leftbarimage {
+    height: 100px;
+     width: 50%
+}
+
+
+@media (max-width: 500px){
+
+    .part1{
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
+      
+    }
+
+    .leftbar {
+        width: 100%;
+        height: 300px;
+    }
+
+    .part1 > div > img {
+        height: 300px;
+        width: 100%;
+    }
+
+    .imgsizing {
+        width: 80%
+    }
+   
+}
+
+.part2{
+    display: flex;
+    margin-top: 20px;
+}
+
+.part2 div {
+    flex: 33%;
+}
+
+.part2 img:hover {
+    transition: all 1s ease;
+    transform: scale(1.1);
+}
+
+.imgsizing {
+    height: 300px;
+}
+
+.buttonplacement {
+    position: absolute;
+    top: 220px;
+    margin: auto;
+    left:0;
+    right:0;
+}
+
+
+@media (max-width: 1240px){
+
+    .part2{
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    .buttonplacement {
+        position: absolute;
+        top: 220px;
+        margin: auto;
+        left: 0;
+        right:0;
+    }
+
+    .parth3 {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 10px; 
+    }
+   
+}
+
+.part3 {
+    position: relative;
+}
+
+.part3__text {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+}
+
+.parth3 {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+    justify-content: space-evenly;
+}
+
+.parth3 img:hover {
+    transition: all 1s ease;
+    transform: scale(1.1);
+}
+
+
+
+.part4 {
+    padding: 0;
+    background-color: palevioletred;
+    color: white;
+}
+
+.footer div p:first-child{
+    font-weight: 700;
+}
+
+.footer div p{
+    margin-bottom: 0px;
+}
+
+.footer div {
+    margin-bottom: 10px;
+}
+
+
+
+@media (max-width: 500px){
+    .footer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer > div {
+        padding-bottom: 10px;
+    }
+}

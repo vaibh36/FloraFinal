@@ -1,0 +1,38 @@
+:root {
+    --modal-duration: 1s;
+    --primary-color: rgb(0, 184, 149);
+    --secondary-color: green;
+
+}
+
+
+nav {
+    background-color: var(--primary-color);
+    border-right: 2px solid orange;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 70vh;
+    z-index: 100;
+    transform: translate(-100%); 
+}
+
+nav ul {
+    margin-top: 30%;
+}
+
+ul li a{
+    color: #fff
+}
+
+.show_nav {
+    transform: translate(200px);
+}
+
+.mobile__header {
+    background-color: rgb(0, 184, 149);
+    display: flex;
+    justify-content: space-around;
+}

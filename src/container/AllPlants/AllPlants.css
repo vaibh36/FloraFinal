@@ -1,0 +1,39 @@
+.card__external {
+    width: 440px;
+     margin-top: 10px;
+    margin-bottom: 10px;
+     box-shadow: 15px 10px 8px gray;
+      height: 400px;
+}
+
+.img_sizing {
+    height: 300px;
+     width: 100%;
+}
+
+.plants__view {
+    margin-top: 100px;
+}
+
+@media (max-width: 500px) {
+
+    .allplants {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card__external {
+        width: 350px
+    }
+
+    .img_sizing {
+        height: 80%;
+         width: 80%;
+    }
+
+    .plants__view {
+        margin-top: 20px;
+    }
+   
+}
