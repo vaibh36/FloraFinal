@@ -146,8 +146,14 @@ function App(props) {
   }
 
   const onScrollEvent = () => {
-    if (document.getElementById('mobile__header'))
-      document.getElementById('mobile__header').classList.remove('show_nav')
+    if(document.getElementById('mobile__header')){
+      if (document.getElementById('mobile__header').classList.contains('show_nav')){
+        document.getElementById('mobile__header').classList.remove('show_nav')
+        if(document.getElementById('card__style')){
+          document.getElementById('card__style').classList.remove('card__style')
+        }
+      }
+    }
   }
 
   return (

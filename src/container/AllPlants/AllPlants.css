@@ -15,6 +15,10 @@
     margin-top: 100px;
 }
 
+.quantity__text {
+    top: 40px;
+}
+
 @media (max-width: 500px) {
 
     .allplants {
@@ -24,7 +28,7 @@
     }
 
     .card__external {
-        width: 350px
+        width: 350px;
     }
 
     .img_sizing {
@@ -34,6 +38,14 @@
 
     .plants__view {
         margin-top: 20px;
+    }
+
+    .card__style {
+        z-index: -1;
+    }
+
+    .quantity__text {
+        top: 20px;
     }
    
 }

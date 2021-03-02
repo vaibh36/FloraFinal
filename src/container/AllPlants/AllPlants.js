@@ -20,19 +20,24 @@ class AllPlants extends React.Component {
         name: '',
         description: '',
         backdrop: true,
-        imageUrl: ''
+        imageUrl: '',
+        msg: ''
     }
 
     componentDidMount() {
-        console.log('Props are:-', this.props.match.params.id)
         fetch('http://localhost:8085/flora/allPlants/' + this.props.match.params.id)
             .then((response) => {
                 console.log('Response is:-', response);
                 return response.json()
             })
             .then((data) => {
-                console.log('Final data is:-', data.plants);
-                this.props.setPlants(data.plants);
+                console.log('Data to be added is via redis:-', data.plants)
+                if (typeof data.plants === 'object')
+                    this.props.setPlants(data.plants);
+                else {
+                    console.log('Data to be added is:-', data.plants)
+                    this.props.setPlants(JSON.parse(data.plants));
+                }
             })
             .catch((err) => {
 
@@ -49,7 +54,6 @@ class AllPlants extends React.Component {
         const item = {
             [plant._id]: plant
         }
-        console.log('Item added:-', item);
         fetch('http://localhost:8085/flora/user/operation/' + myUser.email + '/' + 'ADDING', {
             method: 'POST',
             headers: {
@@ -63,7 +67,6 @@ class AllPlants extends React.Component {
                 return response.json();
             })
             .then((response) => {
-                console.log('Response is:-', response);
                 const { cart = {} } = response;
                 const { products = [] } = cart;
                 const myCart = products.reduce((acc, item) => {
@@ -79,7 +82,6 @@ class AllPlants extends React.Component {
     }
 
     showPlantData = (plant) => {
-        console.log('Plant clicked is:-', plant)
         this.setState({
             modal: true,
             name: plant.name,
@@ -99,7 +101,6 @@ class AllPlants extends React.Component {
             console.log('We need to call the api now')
         }
 
-        console.log('Plant info that requires changes is:-', plantInfo.toJS());
         fetch('http://localhost:8085/flora/user/operation/' + email + '/' + 'REMOVING', {
             method: 'POST',
             headers: {
@@ -130,7 +131,7 @@ class AllPlants extends React.Component {
 
     render() {
         const { modal, name, description, imageUrl } = this.state;
-        const { plantsData = iList([]), myUser = {}, cart= iMap({}) } = this.props;
+        const { plantsData = iList([]), myUser = {}, cart = iMap({}) } = this.props;
         const rows = chunk(plantsData.toJS(), 2);
         console.log('Rows are:-', rows, rows.length);
         return (
@@ -143,43 +144,43 @@ class AllPlants extends React.Component {
                                     {
                                         row.map((plant) => (
                                             <div className="card__external">
-                                            <Card style={{height: '100%', zIndex: '-1'}}>
-                                                <Card.Img src={plant.imageUrl} className="img_sizing"></Card.Img>
-                                                <Card.Body style={{ position: 'relative' }}>
-                                                    <Card.Title>{plant.name}</Card.Title>
-                                                    <div><StarIcon style={{
-                                                        cursor: 'pointer', left: '10px',
-                                                        position: 'absolute', top: '5px', color: 'gold'
-                                                    }} />
-                                                    </div>
-                                                    <div onClick={() => this.showPlantData(plant)}>
-                                                        <span style={{
-                                                            cursor: 'pointer', left: '65%',
-                                                            position: 'absolute', top: '5px'
-                                                        }}>Know more</span>
-                                                        <InfoIcon style={{
-                                                            cursor: 'pointer', left: '88%',
-                                                            position: 'absolute', top: '5px'
+                                                <Card id="card__style" style={{ height: '100%' }}>
+                                                    <Card.Img src={plant.imageUrl} className="img_sizing"></Card.Img>
+                                                    <Card.Body style={{ position: 'relative' }}>
+                                                        <Card.Title>{plant.name}</Card.Title>
+                                                        <div><StarIcon style={{
+                                                            cursor: 'pointer', left: '10px',
+                                                            position: 'absolute', top: '5px', color: 'gold'
                                                         }} />
-                                                    </div>
-                                                    <Card.Text style={{ position: 'absolute', top: '50px', left: '10px' }}><i class="fa fa-inr"></i><span style={{ fontWeight: '700' }}>{plant.price}</span></Card.Text>
-                                                    <Card.Text style={{ position: 'absolute', top: '40px', left: '60%' }}><span style={{ fontSize: '10px' }}>Quantity</span></Card.Text>
-                                                    {!isEmpty(myUser) &&
-                                                        <div style={{
-                                                            cursor: 'pointer', left: '60%',
-                                                            position: 'absolute', bottom: '5px',
-                                                            display: 'flex',
-                                                        }}>
-                                                            <div style={{ border: '1px solid gray', borderRadius: '10px', marginRight: '10px' }}>
-                                                                <span onClick={() => this.addToCart(plant)} style={{ borderRight: '1px gray solid', padding: '8px', paddingTop: '2px', paddingBottom: '2px' }}>+</span>
-                                                                <span style={{ padding: '15px' }}>{cart.getIn([plant.name, 'quantity']) || 0}</span>
-                                                                <span onClick={() => this.removeFromCart(plant)} style={{ borderLeft: '1px gray solid', padding: '8px', paddingTop: '2px', paddingBottom: '2px' }}>-</span>
-                                                            </div>
-                                                            <button style={{ width: '100%', height: '30px', borderRadius: '10px', fontSize: '10px' }}>Add to Cart</button>
                                                         </div>
-                                                    }
-                                                </Card.Body>
-                                            </Card>
+                                                        <div onClick={() => this.showPlantData(plant)}>
+                                                            <span style={{
+                                                                cursor: 'pointer', left: '65%',
+                                                                position: 'absolute', top: '5px'
+                                                            }}>Know more</span>
+                                                            <InfoIcon style={{
+                                                                cursor: 'pointer', left: '88%',
+                                                                position: 'absolute', top: '5px'
+                                                            }} />
+                                                        </div>
+                                                        <Card.Text style={{ position: 'absolute', top: '50px', left: '10px' }}><i class="fa fa-inr"></i><span style={{ fontWeight: '700' }}>{plant.price}</span></Card.Text>
+                                                        <Card.Text className="quantity__text" style={{ position: 'absolute', left: '60%' }}><span style={{ fontSize: '10px' }}>Quantity</span></Card.Text>
+                                                        {!isEmpty(myUser) &&
+                                                            <div style={{
+                                                                cursor: 'pointer', left: '60%',
+                                                                position: 'absolute', bottom: '5px',
+                                                                display: 'flex',
+                                                            }}>
+                                                                <div style={{ border: '1px solid gray', borderRadius: '10px', marginRight: '10px' }}>
+                                                                    <span onClick={() => this.addToCart(plant)} style={{ borderRight: '1px gray solid', padding: '8px', paddingTop: '2px', paddingBottom: '2px' }}>+</span>
+                                                                    <span style={{ padding: '15px' }}>{cart.getIn([plant.name, 'quantity']) || 0}</span>
+                                                                    <span onClick={() => this.removeFromCart(plant)} style={{ borderLeft: '1px gray solid', padding: '8px', paddingTop: '2px', paddingBottom: '2px' }}>-</span>
+                                                                </div>
+                                                                <button style={{ width: '100%', height: '30px', borderRadius: '10px', fontSize: '10px' }}>Add</button>
+                                                            </div>
+                                                        }
+                                                    </Card.Body>
+                                                </Card>
                                             </div>
                                         ))
                                     }
