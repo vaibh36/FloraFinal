@@ -57,6 +57,7 @@ class MobileVersion extends React.Component {
             searchInput: val,
             results: []
         })
+        this.props.history.push('/searchedplant/' + val)
     }
 
     render() {
@@ -102,26 +103,18 @@ class MobileVersion extends React.Component {
                 <nav>
                     <ul>
                         <li><Link style={{ textDecoration: 'none' }} onClick={() => {
-
-
-
-
-
                             if(document.getElementById('card__style')){
                                 if(document.getElementById('card__style').classList.contains('card__style')){
                                     document.getElementById('card__style').classList.remove('card__style')
                                     
                                 }
                             }
-                            
                             if(document.getElementById('card__style')){
                                 if(document.getElementById('card__style').classList.contains('show_nav')){
                                     document.getElementById('mobile__header').classList.remove('show_nav')
                                  }  
                             }
-                            
                             this.props.history.push('/')
-                        
                         }
                         }>Home</Link></li>
                         <li><Link style={{ textDecoration: 'none' }}>Shop</Link></li>

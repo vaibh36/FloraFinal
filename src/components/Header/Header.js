@@ -12,7 +12,7 @@ import MobileVersion from './MobileVersion/MobileVersion';
 
 const allPlants = ['Cactus', 'Caanta', 'Cillar', 'Lily', 'Lemon', 'Limca'];
 
-const Header = ({ count, clearCart, myUser, setUsr, setModalHandler, logout }) => {
+const Header = ({ count, clearCart, myUser, setUsr, setModalHandler, logout, setRouteViaHeader }) => {
     const history = useHistory();
     const [user, updateUser] = React.useState('');
     const [modal, setModal] = React.useState(false);
@@ -60,10 +60,10 @@ const Header = ({ count, clearCart, myUser, setUsr, setModalHandler, logout }) =
 
 
     const setSearchedValue = (val) => {
-        console.log('Value clicked is:-', val);
+        console.log('Value clicked is:-', val, setRouteViaHeader);
         setSearchInput(val);
         document.getElementById('results').classList.add('hide__dropdown');
-        history.push('/searchedplant/' + val)
+        setRouteViaHeader(val)
     }
 
 

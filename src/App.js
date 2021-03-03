@@ -156,6 +156,10 @@ function App(props) {
     }
   }
 
+  const setRouteViaHeader = (val)=>{
+    history.push('/searchedplant/' + val)
+  }
+
   return (
 
     !spinner ? (
@@ -173,29 +177,29 @@ function App(props) {
         }
         <Switch>
           <Route exact path='/'>
-            <Header setModalHandler={() => setModal(true)} logout={logoutHandler} />
+            <Header  setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
             <Home />
           </Route>
           <Route exact path='/checkout'>
-            <Header setModalHandler={() => setModal(true)} logout={logoutHandler} />
+            <Header  setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
             <CartItems />
           </Route>
           <Route exact path='/allplants/:id'>
-            <Header setModalHandler={() => setModal(true)} logout={logoutHandler} />
+            <Header  setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
             <PlantTypes />
           </Route>
           <Route exact path='/address'>
-            <Header setModalHandler={() => setModal(true)} logout={logoutHandler} />
+            <Header  setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
             <Address />
           </Route>
 
           <Route exact path='/searchedplant/:id'>
-            <Header setModalHandler={() => setModal(true)} logout={logoutHandler} />
+            <Header setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
             <SearchedPlant />
           </Route>
 
           <Route exact path='/forgotpassword'>
-            <Header setModalHandler={() => setModal(true)} logout={logoutHandler} />
+            <Header setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
             <ForgotPassword />
           </Route>
 

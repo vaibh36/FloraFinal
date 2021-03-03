@@ -164,7 +164,12 @@ class AllPlants extends React.Component {
                                                             }} />
                                                         </div>
                                                         <Card.Text style={{ position: 'absolute', top: '50px', left: '10px' }}><i class="fa fa-inr"></i><span style={{ fontWeight: '700' }}>{plant.price}</span></Card.Text>
+                                                        
+                                                        {
+                                                            !isEmpty(myUser) && 
                                                         <Card.Text className="quantity__text" style={{ position: 'absolute', left: '60%' }}><span style={{ fontSize: '10px' }}>Quantity</span></Card.Text>
+
+                                                        }
                                                         {!isEmpty(myUser) &&
                                                             <div style={{
                                                                 cursor: 'pointer', left: '60%',
