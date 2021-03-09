@@ -99,7 +99,7 @@ const CartItems = ({ count = 0, cart = iMap({}), user, addItems, removeItem }) =
                 {
                     count === 0 ? <h2>You do not have any item to checkout</h2> :
                         (
-                            <div style={{ display: 'flex' }}>
+                            <div className="mobile__checkout" style={{ display: 'flex' }}>
 
                                 <div style={{ display: 'flex', flex: '80%', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', border: '1px solid gray', backgroundColor: 'lightgray' }}>
                                     {

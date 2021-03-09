@@ -142,7 +142,7 @@ class SearchedPlant extends React.Component {
                 { !isEmpty(plant) ?
                     <Card style={{
                         width: '440px', marginTop: '10px',
-                        marginBottom: '20px', boxShadow: '15px 10px 8px gray', height: '400px'
+                        marginBottom: '20px', boxShadow: '15px 10px 8px gray', height: '400px', zIndex: '-1'
                     }}>
                         <Card.Img src={plant.imageUrl} style={{ height: '300px' }}></Card.Img>
                         <Card.Body style={{ position: 'relative' }}>

@@ -26,6 +26,7 @@ function App(props) {
   const history = useHistory();
 
   React.useEffect(() => {
+    
     const { setUsr, addItems } = props;
     const unsubscribe = auth.onAuthStateChanged((authUser = {}) => {
       console.log('Value of auth change is:-', authUser);
@@ -57,10 +58,12 @@ function App(props) {
           .catch((err) => {
             setSpinner(false)
           })
-        setSpinner(false)
+        setSpinner(false);
+       
       } else {
         console.log('Not defined auth user:-', authUser);
-        setSpinner(false)
+        setSpinner(false);
+        
       }
     })
     return () => {
@@ -160,6 +163,11 @@ function App(props) {
     history.push('/searchedplant/' + val)
   }
 
+  const modalController = ()=>{
+    if(modal)
+      setModal(false)
+  }
+
   return (
 
     !spinner ? (
@@ -178,7 +186,7 @@ function App(props) {
         <Switch>
           <Route exact path='/'>
             <Header  setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />
-            <Home />
+            <Home operateModal={modalController} modal={modal} />
           </Route>
           <Route exact path='/checkout'>
             <Header  setRouteViaHeader={setRouteViaHeader} setModalHandler={() => setModal(true)} logout={logoutHandler} />

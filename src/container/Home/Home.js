@@ -12,6 +12,12 @@ import {withRouter} from 'react-router-dom';
 
 class Home extends React.Component {
 
+    componentDidUpdate(prevProps){
+        console.log('[componentDidUpdate] Home');
+        if(prevProps.modal)
+            this.props.operateModal();
+    }
+
 
     render() {
         return (

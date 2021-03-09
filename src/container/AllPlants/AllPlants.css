@@ -25,6 +25,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
     }
 
     .card__external {
@@ -37,12 +38,12 @@
     }
 
     .plants__view {
-        margin-top: 20px;
+        margin-top: 100px;
     }
 
-    .card__style {
+    /* .card__style {
         z-index: -1;
-    }
+    } */
 
     .quantity__text {
         top: 20px;

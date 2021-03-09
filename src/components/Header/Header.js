@@ -126,7 +126,7 @@ const Header = ({ count, clearCart, myUser, setUsr, setModalHandler, logout, set
                             </div>
                         </li>
                     </ul>
-                </div> : <MobileVersion setModalHandler={setModalHandler} />
+                </div> : <MobileVersion setModalHandler={setModalHandler} logout={logOut} />
             }
         </React.Fragment>
 

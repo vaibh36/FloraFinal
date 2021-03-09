@@ -35,4 +35,7 @@ ul li a{
     background-color: rgb(0, 184, 149);
     display: flex;
     justify-content: space-around;
+    position: fixed;
+    width: 100vw;
+    z-index: 100;
 }
